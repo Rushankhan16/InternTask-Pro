@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="InternTask Pro - professional task management dashboard">
+  <title>InternTask Pro | Task Dashboard</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <div class="brand">
+        <div class="brand-mark">IT</div>
+        <div>
+          <h1>InternTask</h1>
+          <span>PRO DASHBOARD</span>
+        </div>
+      </div>
+
+      <nav class="nav">
+        <button class="nav-item active" data-section="dashboard">
+          <span>▦</span> Dashboard
+        </button>
+        <button class="nav-item" data-section="tasks">
+          <span>✓</span> My Tasks
+        </button>
+        <button class="nav-item" data-section="analytics">
+          <span>◈</span> Analytics
+        </button>
+      </nav>
+
+      <div class="sidebar-bottom">
+        <div class="tip-card">
+          <div class="tip-icon">✦</div>
+          <strong>Stay productive</strong>
+          <p>Break large goals into small, actionable tasks.</p>
+        </div>
+        <div class="sidebar-footer">Internship Project • 2026</div>
+      </div>
+    </aside>
+
+    <main class="main-content">
+      <header class="topbar">
+        <div>
+          <p class="eyebrow">WORKSPACE</p>
+          <h2 id="pageTitle">Dashboard</h2>
+        </div>
+        <div class="top-actions">
+          <button class="icon-btn" id="themeBtn" title="Toggle theme">☾</button>
+          <button class="primary-btn" id="openAddBtn">+ New Task</button>
+        </div>
+      </header>
+
+      <section id="dashboardSection" class="section active-section">
+        <div class="welcome">
+          <div>
+            <p class="eyebrow">GOOD TO SEE YOU</p>
+            <h3>Plan. Focus. <span>Finish.</span></h3>
+            <p>Keep your internship work organized and track your progress in one place.</p>
+          </div>
+          <div class="date-box">
+            <span id="todayLabel"></span>
+            <strong id="clock"></strong>
+          </div>
+        </div>
+
+        <div class="stats-grid">
+          <div class="stat-card">
+            <div class="stat-icon purple">◫</div>
+            <div><span>Total Tasks</span><strong id="totalStat">0</strong></div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon blue">◷</div>
+            <div><span>In Progress</span><strong id="progressStat">0</strong></div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon green">✓</div>
+            <div><span>Completed</span><strong id="completedStat">0</strong></div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon orange">!</div>
+            <div><span>High Priority</span><strong id="highStat">0</strong></div>
+          </div>
+        </div>
+
+        <div class="content-grid">
+          <div class="panel">
+            <div class="panel-header">
+              <div>
+                <p class="eyebrow">WORK QUEUE</p>
+                <h3>Recent Tasks</h3>
+              </div>
+              <button class="text-btn" id="viewAllBtn">View all →</button>
+            </div>
+            <div id="recentTasks" class="task-list"></div>
+          </div>
+
+          <div class="panel progress-panel">
+            <div class="panel-header">
+              <div>
+                <p class="eyebrow">PERFORMANCE</p>
+                <h3>Overall Progress</h3>
+              </div>
+            </div>
+            <div class="progress-ring-wrap">
+              <div class="progress-ring" id="progressRing">
+                <div><strong id="progressPercent">0%</strong><span>complete</span></div>
+              </div>
+            </div>
+            <p class="progress-message" id="progressMessage">Start adding tasks to track your progress.</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="tasksSection" class="section">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">WORKSPACE</p>
+            <h3>My Tasks</h3>
+          </div>
+        </div>
+
+        <div class="toolbar">
+          <div class="search-box">
+            <span>⌕</span>
+            <input id="searchInput" type="search" placeholder="Search tasks...">
+          </div>
+          <select id="statusFilter">
+            <option value="all">All Status</option>
+            <option value="todo">To Do</option>
+            <option value="progress">In Progress</option>
+            <option value="completed">Completed</option>
+          </select>
+          <select id="priorityFilter">
+            <option value="all">All Priority</option>
+            <option value="high">High</option>
+            <option value="medium">Medium</option>
+            <option value="low">Low</option>
+          </select>
+        </div>
+        <div id="allTasks" class="task-list full-list"></div>
+      </section>
+
+      <section id="analyticsSection" class="section">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">INSIGHTS</p>
+            <h3>Task Analytics</h3>
+          </div>
+        </div>
+        <div class="analytics-grid">
+          <div class="panel">
+            <p class="eyebrow">STATUS BREAKDOWN</p>
+            <h3>Task Distribution</h3>
+            <div class="bar-row"><span>Completed</span><div class="bar"><i id="completedBar"></i></div><b id="completedCount">0</b></div>
+            <div class="bar-row"><span>In Progress</span><div class="bar"><i id="progressBar"></i></div><b id="progressCount">0</b></div>
+            <div class="bar-row"><span>To Do</span><div class="bar"><i id="todoBar"></i></div><b id="todoCount">0</b></div>
+          </div>
+          <div class="panel">
+            <p class="eyebrow">PRIORITY</p>
+            <h3>Priority Overview</h3>
+            <div class="priority-overview">
+              <div><span class="dot high-dot"></span><span>High</span><strong id="analyticsHigh">0</strong></div>
+              <div><span class="dot medium-dot"></span><span>Medium</span><strong id="analyticsMedium">0</strong></div>
+              <div><span class="dot low-dot"></span><span>Low</span><strong id="analyticsLow">0</strong></div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <div class="modal hidden" id="taskModal">
+    <div class="modal-card">
+      <button class="close-btn" id="closeModal">×</button>
+      <p class="eyebrow">TASK MANAGER</p>
+      <h3 id="modalTitle">Create New Task</h3>
+      <form id="taskForm">
+        <input type="hidden" id="taskId">
+        <label>Task title<input id="taskTitle" required maxlength="80" placeholder="e.g. Complete API documentation"></label>
+        <label>Description<textarea id="taskDescription" rows="3" maxlength="240" placeholder="Add a short description..."></textarea></label>
+        <div class="form-row">
+          <label>Priority
+            <select id="taskPriority">
+              <option value="high">High</option>
+              <option value="medium" selected>Medium</option>
+              <option value="low">Low</option>
+            </select>
+          </label>
+          <label>Status
+            <select id="taskStatus">
+              <option value="todo">To Do</option>
+              <option value="progress">In Progress</option>
+              <option value="completed">Completed</option>
+            </select>
+          </label>
+        </div>
+        <label>Category
+          <select id="taskCategory">
+            <option>Development</option>
+            <option>Research</option>
+            <option>Documentation</option>
+            <option>Testing</option>
+            <option>Meeting</option>
+            <option>Learning</option>
+          </select>
+        </label>
+        <button class="primary-btn submit-btn" type="submit" id="submitTask">Create Task</button>
+      </form>
+    </div>
+  </div>
+
+  <div id="toast" class="toast"></div>
+  <script src="script.js"></script>
+</body>
+</html>

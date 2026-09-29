@@ -1,0 +1,13 @@
+{
+  "name": "interntask-pro",
+  "version": "1.0.0",
+  "description": "Professional internship task management dashboard built with Node.js, Express, HTML, CSS and JavaScript.",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.21.2"
+  }
+}
